@@ -1,0 +1,34 @@
+def add_items():
+    items=[]
+    prices=[]
+    while True:
+        name=input("enter the item name:")
+        price=float(input("enter the item price:"))
+        items.append(name)
+        prices.append(price)
+        more=input("add more items(yes/no):")
+        if more != "yes":
+            break
+    return items,prices
+def calculate_bill(prices):
+    total=sum(prices)
+    if total>=500:
+        discount=total*0.1
+    elif total>=200:
+        discount=total*0.05
+    else:
+        discount=0
+    final_amount=total-discount
+    return total,discount,final_amount
+def final_bill(items,prices,total,discount,final_amount):
+    print("/n ---------bill---------")
+    for i in range(len(items)):
+        print(f"{items[i]} - Rs.{prices[i]:.2f}")
+    print(f"total:Rs.{total}")
+    print(f"discount:Rs.{discount}")
+    print(f"final amount:Rs.{final_amount}")
+    print("---------------------------")
+        
+items , prices =add_items()
+total,discount,final_amount=calculate_bill(prices)
+final_bill(items,prices,total,discount,final_amount)
